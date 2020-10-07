@@ -16,7 +16,7 @@ public class ArraysUtil {
         if (isValid(array)) {
             return array;
         } else {
-            throw new ConvertStringToArrayException("Array length is invalid.");
+            throw new ConvertStringToArrayException("Array length is invalid");
         }
     }
 

@@ -31,7 +31,7 @@ public class DataFileProcessor {
                     var line = iterator.nextLine();
                     reportProcessor.process(line);
                 }
-            } catch (ConvertStringToArrayException e) {
+            } catch (FileProcessingException | ConvertStringToArrayException e) {
                logger.error("[Data File Process] {}", e.getMessage());
             } finally {
                 writeOutputFile(reportProcessor.getReportData(), file.getName());

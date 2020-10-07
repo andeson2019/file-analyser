@@ -1,11 +1,13 @@
 package br.com.andeson.fileanalyzer.model;
 
+import java.util.Objects;
+
 public class SaleItem extends BaseModel{
     private Long id;
-    private String quantity;
+    private Integer quantity;
     private Double price;
 
-    public SaleItem(Long id, String quantity, Double price) {
+    public SaleItem(Long id, Integer quantity, Double price) {
         this.id = id;
         this.quantity = quantity;
         this.price = price;
@@ -15,7 +17,7 @@ public class SaleItem extends BaseModel{
         return id;
     }
 
-    public String getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
@@ -30,5 +32,20 @@ public class SaleItem extends BaseModel{
                 ", price='" + price + '\'' +
                 ", quantity='" + quantity + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SaleItem saleItem = (SaleItem) o;
+        return Objects.equals(id, saleItem.id) &&
+                Objects.equals(quantity, saleItem.quantity) &&
+                Objects.equals(price, saleItem.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, quantity, price);
     }
 }

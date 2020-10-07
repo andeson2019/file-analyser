@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,8 @@ public class ReportProcessor {
     public ReportProcessor() {
     }
 
-    public void process(String line) throws ConvertStringToArrayException {
+    public void process(String line) throws FileProcessingException, ConvertStringToArrayException {
+
         try {
             var code = line.substring(0, 3);
             DataType dataType = DataType.getValue(code);
@@ -43,6 +45,7 @@ public class ReportProcessor {
             }
         } catch (FileProcessingException e) {
             logger.error("[Report Processor] Error processing report: {}", e.getMessage());
+            throw new FileProcessingException("[Report Processor] Invalid data type.");
         }
     }
 
@@ -64,14 +67,14 @@ public class ReportProcessor {
     public String getReportData() {
         var mostExpensiveSaleId = getMostExpensiveSaleId();
         var worstSalesmanName = getWorstSalesmanName();
-        var clientsNumber = getClientNumber();
+        var clientsNumber = getClientsNumber();
         var salesmanNumber = getSalesmanNumber();
 
         return new Report(salesmanNumber, clientsNumber,
                 mostExpensiveSaleId, worstSalesmanName).toString();
     }
 
-    private Long getMostExpensiveSaleId() {
+    public Long getMostExpensiveSaleId() {
         Double mostExpensivePrice = 0d;
         Long mostExpensiveSaleId = 0L;
         List<Sale> sales = getSales();
@@ -85,7 +88,7 @@ public class ReportProcessor {
         return mostExpensiveSaleId;
     }
 
-    private String getWorstSalesmanName() {
+    public String getWorstSalesmanName() {
         List<Sale> sales = getSales();
         Double worstSalePrice = getTotalSaleValue(sales.get(0));
         Sale worstSale = sales.get(0);
@@ -98,19 +101,19 @@ public class ReportProcessor {
         return worstSale.getSalesmanName();
     }
 
-    private Long getClientNumber() {
+    public Long getClientsNumber() {
         return reportItems.stream()
                 .filter(item -> item instanceof Client)
                 .count();
     }
 
-    private Long getSalesmanNumber() {
+    public Long getSalesmanNumber() {
         return reportItems.stream()
                 .filter(item -> item instanceof Salesman)
                 .count();
     }
 
-    private List<Sale> getSales(){
+    public List<Sale> getSales(){
         return reportItems.stream()
                 .filter(item -> item instanceof Sale)
                 .map(item -> (Sale) item)
@@ -119,7 +122,7 @@ public class ReportProcessor {
 
     private Double getTotalSaleValue(Sale sale){
           return sale.getSaleItems().stream()
-                    .mapToDouble(SaleItem::getPrice)
+                    .mapToDouble(saleItem -> (saleItem.getPrice() * saleItem.getQuantity()))
                     .sum();
     }
 

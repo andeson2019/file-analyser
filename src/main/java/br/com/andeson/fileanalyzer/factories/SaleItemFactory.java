@@ -3,15 +3,14 @@ package br.com.andeson.fileanalyzer.factories;
 import br.com.andeson.fileanalyzer.exceptions.ConvertStringToArrayException;
 import br.com.andeson.fileanalyzer.model.BaseModel;
 import br.com.andeson.fileanalyzer.model.SaleItem;
-import br.com.andeson.fileanalyzer.utils.ArraysUtil;
 
-public class ItemFactory implements IModelFactory{
+public class SaleItemFactory implements IModelFactory{
 
     @Override
     public BaseModel create(String data) throws ConvertStringToArrayException {
-        var array = ArraysUtil.stringToArray(data, "ç");
-        return new SaleItem(Long.parseLong(array[1]),
-                array[2],
-                Double.parseDouble(array[3]));
+        var array = data.split("-");
+        return new SaleItem(Long.parseLong(array[0]),
+               Integer.parseInt(array[1]),
+                Double.parseDouble(array[2]));
     }
 }
