@@ -1,6 +1,6 @@
 # File Analyzer
 
-##Aplicação desenvolvida como solução para teste de desenvolvedor.
+## Aplicação desenvolvida como solução para teste de desenvolvedor.
 
 O software desenvolvido tem como finalidade realizar a análise de dados
 contidos em arquivos de texto e exportar relatórios.
@@ -16,7 +16,7 @@ Após a leitura dos arquivos de dados, deve exportar um relatório com as seguin
 * ID da venda mais cara;
 * Nome do vendedor da pior venda.
 
-##Requisitos
+## Requisitos
 
 - Java versão 11 ou superior;
 - Maven;
@@ -24,13 +24,13 @@ Após a leitura dos arquivos de dados, deve exportar um relatório com as seguin
 - OS Linux ou Windows.
      
 
-##Instalação
+## Instalação
 
 - Basta fazer o download do projeto ou clonar usando o comando:
 ```
 git clone git@github.com:andeson2019/file-analyser.git 
 ```   
-##Execução
+## Execução
 
 - Após o download ou clonagem do projeto, o mesmo pode ser importado para 
 uma IDE com suporte ao gerenciador de dependências Maven ou ser executado utilizando a ferramenta de build do próprio Maven.
@@ -41,8 +41,8 @@ realizará a leitura de forma automática. Caso já existam arquivos no diretór
 a leitura ao iniciar.
 - A aplicação faz a leitura apenas de arquivos com extensão "**.dat**".
 
-##Formato de Arquivo
-#####A aplicação lê apenas arquivos com a extensão "**.dat**" com o dados formatados de acordo com o exemplo a seguir:
+## Formato de Arquivo
+##### A aplicação lê apenas arquivos com a extensão "**.dat**" com o dados formatados de acordo com o exemplo a seguir:
 
 
 ```
