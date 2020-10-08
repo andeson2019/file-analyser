@@ -42,7 +42,7 @@ a leitura ao iniciar.
 - A aplicação faz a leitura apenas de arquivos com extensão "**.dat**".
 
 ## Formato de Arquivo
-##### A aplicação lê apenas arquivos com a extensão "**.dat**" com o dados formatados de acordo com o exemplo a seguir:
+##### A aplicação lê apenas arquivos com a extensão "**.dat**" com os dados formatados de acordo com o exemplo a seguir:
 
 
 ```
